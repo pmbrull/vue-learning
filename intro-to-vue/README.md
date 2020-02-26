@@ -107,3 +107,35 @@ An important aspect of computed properties is that their value is cached. It get
 ## Components
 
 They are blocks of code that are thought to be reused and make our code more modular. We can set components inside other components.
+
+We can think of those as small subsets of the main Vue object. Therefore, we can put in them the same options object: data, methods, computed... However, there are two major differentiating factor.
+
+When talking about components, we can define in them a `template` option, where we will put the HTML code that will be rendered in that component. Also, the data object needs to be modified. It becomes a function that `returns` our data. This way, different components can handle their own data.
+
+Finally, we may need to send custom data to specific components. This is done via `props`. We can define the elements that we expect to receive, their types and if they are required to run or not. Note that the `props` need to be bound to the component, so we add `:` before each passed prop. An example of using a `<product>` would be as follows:
+
+```html
+<div id="app">
+    <product :myProp="someVal"></product>
+</div> 
+```
+
+```js
+Vue.component('product', {
+    props: {
+        myProp: {
+            type: <type>,
+            required: <true or false>
+        }
+      }
+    },
+    template: `some html`,
+    data() {
+        return {
+            [...]
+        }
+    },
+    methods: [...],
+    computed: [...]
+    ...
+```
