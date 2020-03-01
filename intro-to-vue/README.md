@@ -112,7 +112,7 @@ We can think of those as small subsets of the main Vue object. Therefore, we can
 
 When talking about components, we can define in them a `template` option, where we will put the HTML code that will be rendered in that component. Also, the data object needs to be modified. It becomes a function that `returns` our data. This way, different components can handle their own data.
 
-Finally, we may need to send custom data to specific components. This is done via `props`. We can define the elements that we expect to receive, their types and if they are required to run or not. Note that the `props` need to be bound to the component, so we add `:` before each passed prop. An example of using a `<product>` would be as follows:
+Finally, we may need to send custom data to specific components. This is done via `props`. We can define the elements that we expect to receive, their types and if they are required to run or not. Note that the `props` need to be bound to the component, so we add `:` before each passed prop. An example of using a `<parent>` would be as follows:
 
 ```html
 <div id="app">
@@ -139,3 +139,13 @@ Vue.component('product', {
     computed: [...]
     ...
 ```
+
+## Communicating Events
+
+How do we handle data change from within different components? In the same way that we can pass data down via `props`, we also have a way to let the parent know that an event happened. To do so, we can use `this.$emit('some-event')`. However, we still have to let the parent know what to do with this event:
+
+```html
+<parent @some-event="some-method"></parent>
+```
+
+
